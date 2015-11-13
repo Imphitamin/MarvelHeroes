@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashScreen"
+            android:name=".ui.SplashScreen"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -21,9 +21,25 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:name=".ui.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Toolbar"
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
         </activity>
+
+        <activity
+            android:name=".ui.CharacterDetailsActivity"
+            android:label="@string/app_name"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="6c478bb922e85d548ebb030981f594965b7076d0" />
+
     </application>
 
 </manifest>

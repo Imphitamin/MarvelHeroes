@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Marvel\'s Heroes</string>
+    <string name="search_hint">Search comics</string>
+
+    <string name="title_activity_character_detail_activity">Character\'s Details</string>
+    <string name="title_selection1">Characters</string>
+    <string name="title_selection2">Comics</string>
+
+    <string name="navigation_drawer_open">Open Navigation drawer</string>
+    <string name="navigation_drawer_close">Close Navigation drawer</string>
+
 </resources>

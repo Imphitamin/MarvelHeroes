@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_Main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="0.5dp" >
+
+    <RelativeLayout
+        android:id="@+id/img_block"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:minHeight="250dp"
+        android:maxHeight="350dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img_character"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        fresco:actualImageScaleType="centerInside"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderWidth="1.5dp"
+        fresco:roundedCornerRadius="5dp"
+        fresco:roundWithOverlayColor="@color/text"
+        fresco:roundingBorderColor="@color/black_screen"
+        fresco:placeholderImage="@drawable/test_hero" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_characterName"
+        android:background="@color/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
+        android:layout_below="@+id/img_block"
+        android:gravity="center"
+        android:text="SPIDER-MAN"
+        android:fontFamily="Verdana"
+        android:textSize="27sp"
+        android:textColor="@color/black_screen"
+        android:textStyle="bold|italic"
+        android:maxLines="2"/>
+
+    <ImageView
+        android:layout_below="@id/text_characterName"
+        android:background="@color/text"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+</RelativeLayout>

@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black_screen">#000000</color>
+    <color name="primary">#252525</color>
+    <color name="primary_dark">#1a1a1a</color>
+    <color name="accent">#9E9E9E</color>
+    <color name="text">#ffffff</color>
+    <color name="white">#ffeeeeee</color>
+    <color name="overlay_image">#a20e0e0e</color>
+    <color name="back_navigation_select">#e45a5a</color>
+    <color name="divider">#b6b6b6</color>
+    <color name="text_primary_black">#212121</color>
+    <color name="text_secondary_black">#727272</color>
 </resources>
