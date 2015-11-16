@@ -8,7 +8,6 @@ import com.example.dmitry.marvelheroes.rest.Constants;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by Dmitry on 13.10.2015.
@@ -16,13 +15,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Character implements Parcelable {
 
-    //@SerializedName(Constants.ID_KEY)
     int id;
-
-    //@SerializedName(Constants.NAME_KEY)
     String name;
-
-    //@SerializedName(Constants.DESCRIPTION_KEY)
     String description;
 
     @Expose

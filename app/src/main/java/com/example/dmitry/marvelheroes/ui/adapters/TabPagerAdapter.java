@@ -1,18 +1,12 @@
 package com.example.dmitry.marvelheroes.ui.adapters;
 
-import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.dmitry.marvelheroes.R;
-import com.example.dmitry.marvelheroes.ui.CharacterDetailsActivity;
 import com.example.dmitry.marvelheroes.ui.fragments.CharacterDetailsComicsFragment;
 import com.example.dmitry.marvelheroes.ui.fragments.CharacterDetailsFragment;
-import com.example.dmitry.marvelheroes.ui.fragments.CharactersFragment;
-import com.example.dmitry.marvelheroes.ui.fragments.ComicsFragment;
 
 /**
  * Created by Dmitry on 09.11.2015.
@@ -34,10 +28,8 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
         switch(position) {
             case 0:
-                new CharacterDetailsFragment();
                 return CharacterDetailsFragment.newInstance(mCharacterData);
             case 1:
-                new CharacterDetailsComicsFragment();
                 return CharacterDetailsComicsFragment.newInstance(mCharacterData);
             default:
                 return null;

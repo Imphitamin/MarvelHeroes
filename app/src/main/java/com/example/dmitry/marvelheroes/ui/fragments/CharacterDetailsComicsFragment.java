@@ -1,10 +1,8 @@
 package com.example.dmitry.marvelheroes.ui.fragments;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dmitry.marvelheroes.R;
-import com.example.dmitry.marvelheroes.item.*;
 import com.example.dmitry.marvelheroes.item.Character;
 import com.example.dmitry.marvelheroes.ui.adapters.ComicsListAdapter;
 import com.example.dmitry.marvelheroes.ui.interfaces.OnComicsRecycleViewScrollListener;
