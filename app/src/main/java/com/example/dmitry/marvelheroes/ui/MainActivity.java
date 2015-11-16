@@ -177,6 +177,6 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 .replace(R.id.main_container, comicsFragment)
                 .commit();
         item.setVisible(false);
-        MainActivity.this.setTitle(getResources().getString(R.string.app_name));
+        MainActivity.this.setTitle(getResources().getString(R.string.title_selection2));
     }
 }
