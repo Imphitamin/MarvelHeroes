@@ -28,7 +28,6 @@ import retrofit.client.Response;
 
 public class CharactersFragment extends Fragment {
 
-    //private static final String LOG_TAG = CharactersFragment.class.getCanonicalName();
     public Context CONTEXT;
 
     @InjectView(R.id.list_heroes)
@@ -59,14 +58,9 @@ public class CharactersFragment extends Fragment {
         return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
     private void getMarvelApiInfo() {
         MarvelApiClient.getInstance(CONTEXT)
-                .requestHeroesList(Constants.CHARACTERS_LIMIT, Constants.CHARACTERS_INIT_COUNT, new Callback<CharacterListResponse>() { // TODO: 13.11.2015 использовать константы
+                .requestHeroesList(Constants.CHARACTERS_LIMIT, Constants.CHARACTERS_INIT_COUNT, new Callback<CharacterListResponse>() {
                     @Override
                     public void success(CharacterListResponse characterListResponse, Response response) {
                         adapter.addItemCollection(characterListResponse.getCharacters());
