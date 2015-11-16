@@ -34,10 +34,8 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
         switch(position) {
             case 0:
-                new CharacterDetailsFragment();
                 return CharacterDetailsFragment.newInstance(mCharacterData);
             case 1:
-                new CharacterDetailsComicsFragment();
                 return CharacterDetailsComicsFragment.newInstance(mCharacterData);
             default:
                 return null;

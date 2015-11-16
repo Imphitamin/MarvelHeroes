@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import retrofit.client.Response;
  */
 public class CharacterDetailsFragment extends Fragment {
 
+    public static final String CHARACTER_DATA = "characterData";
     public Context CONTEXT;
     private Character characterData;
 
@@ -45,7 +47,7 @@ public class CharacterDetailsFragment extends Fragment {
         CharacterDetailsFragment mCharacterDetailFragment = new CharacterDetailsFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("characterData", parcelable);
+        bundle.putParcelable(CHARACTER_DATA, parcelable);
         mCharacterDetailFragment.setArguments(bundle);
 
         return mCharacterDetailFragment;
@@ -55,7 +57,7 @@ public class CharacterDetailsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         CONTEXT = context;
-        characterData = getArguments().getParcelable("characterData");
+        characterData = getArguments().getParcelable(CHARACTER_DATA);
     }
 
     @Override
@@ -86,10 +88,10 @@ public class CharacterDetailsFragment extends Fragment {
     private void initView() {
         heroImage.setImageURI(Uri.parse(String.valueOf(characterData.getUrlImage())));
         heroName.setText(characterData.getName());
-        if (!characterData.getDescription().equals("")) {
-            heroDesc.setText(characterData.getDescription());
-        } else {
+        if (TextUtils.isEmpty(characterData.getDescription())) {
             heroDesc.setText(R.string.NO_description);
+        } else {
+            heroDesc.setText(characterData.getDescription());
         }
     }
 }
