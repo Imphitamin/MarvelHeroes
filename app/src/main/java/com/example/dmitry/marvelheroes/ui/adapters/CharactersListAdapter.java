@@ -29,8 +29,6 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import static java.util.Collections.EMPTY_LIST;
-
 /**
  * Created by Dmitry on 14.10.2015.
  */
@@ -39,9 +37,8 @@ public class CharactersListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private final static int VIEW_CHARACTER = 0;
     private final static int VIEW_PROGRESS = 1;
-    private final static String emptyContent = "None";
 
-    List<Character> characters = new ArrayList<>(); // TODO: 13.11.2015 вместо empty_list - new List
+    List<Character> characters = new ArrayList<>();
     Context context;
     private LayoutInflater inflater;
 
@@ -57,7 +54,7 @@ public class CharactersListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         if (viewType == VIEW_CHARACTER) {
-            return new CharacterViewHolder(inflater.inflate(R.layout.item_character, viewGroup, false)); // TODO: 13.11.2015 вынести в return
+            return new CharacterViewHolder(inflater.inflate(R.layout.item_character, viewGroup, false));
         } else {
             return new ProgressViewHolder(inflater.inflate(R.layout.item_character_progressbar, viewGroup, false));
         }
@@ -65,43 +62,17 @@ public class CharactersListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
-        //viewHolder.getItemViewType() // TODO: 13.11.2015 получить characters fragment
-        // if (viewHolder instanceof CharacterViewHolder) {
         if (viewHolder.getItemViewType() == VIEW_CHARACTER) {
             final CharacterViewHolder charHolder = (CharacterViewHolder) viewHolder;
-            Character thisCharacter = characters.get(position);
+            final Character thisCharacter = characters.get(position);
             charHolder.setImage(thisCharacter.getUrlImage());
             charHolder.setName(thisCharacter.getName());
-
-            /*final Bundle bundle = new Bundle();
-            bundle.putString(Constants.HERO_URL_IMAGE, String.valueOf(thisCharacter.getUrlImage()));
-            bundle.putString(Constants.ID_KEY, String.valueOf(thisCharacter.getId()));
-            bundle.putString(Constants.HERO_NAME, thisCharacter.getName());
-            bundle.putInt(CharacterDetailsActivity.CHARACTER_DETAILS_FRAGMENT_TAG, DETAIL_FRAGMENT_ID);
-            if (thisCharacter.getDescription().length() > 0) {
-                bundle.putString(Constants.HERO_DESC, thisCharacter.getDescription());
-            } else {
-                bundle.putString(Constants.HERO_DESC, emptyContent);
-            }*/
-            // TODO: 13.11.2015 разобраться с этой херней
-            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.context);
-            final SharedPreferences.Editor editor = prefs.edit();
-            editor.putString("heroImage", String.valueOf(thisCharacter.getUrlImage()));
-            editor.putString("id", String.valueOf(thisCharacter.getId()));
-            editor.putString("heroName", thisCharacter.getName());
-            //editor.putInt(CharacterDetailsActivity.CHARACTER_DETAILS_FRAGMENT_TAG, DETAIL_FRAGMENT_ID);
-            if (thisCharacter.getDescription().length() > 0) {
-                editor.putString("heroDesc", thisCharacter.getDescription());
-            } else {
-                editor.putString("heroDesc", emptyContent);
-            }
 
             charHolder.item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //NavigationHelper.startCharacterDetails(((AppCompatActivity) context), bundle);
-                    editor.commit();
                     Intent characterDetails = new Intent(context, CharacterDetailsActivity.class);
+                    characterDetails.putExtra("characterData", thisCharacter);
                     context.startActivity(characterDetails);
                 }
             });
@@ -126,12 +97,6 @@ public class CharactersListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
         return characters.size();
     }
-
-    // Заменю текущие данные адапетра на новые данные коллекций
-    /*public void updateList(List<Character> characters) { // TODO: 13.11.2015 можно использовать addItemCollection вместо этого
-        this.characters = characters;
-        notifyItemInserted(this.characters.size() - 1);
-    }*/
 
     // Добавляем предметы к текущему списку героев
     public void addItemCollection(List<Character> characters) {
@@ -160,17 +125,15 @@ public class CharactersListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     private void showOnLoadViewHolder() {
-        //final int startPosition = this.characters.size();
         this.characters.add(null);
         notifyItemInserted(characters.size());
-        //notifyDataSetChanged();
     }
 
     public boolean isProgressViewVisible() {
         return characters.contains(null);
     }
 
-    static class CharacterViewHolder extends RecyclerView.ViewHolder { // TODO: 13.11.2015 можно захерачить static
+    static class CharacterViewHolder extends RecyclerView.ViewHolder {
         @InjectView(R.id.item_Main)
         RelativeLayout item;
 

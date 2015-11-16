@@ -1,6 +1,8 @@
 package com.example.dmitry.marvelheroes.item;
 
 import android.net.Uri;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import com.example.dmitry.marvelheroes.rest.Constants;
 import com.google.gson.Gson;
@@ -12,15 +14,15 @@ import com.google.gson.annotations.SerializedName;
  * Created by Dmitry on 13.10.2015.
  */
 
-public class Character {
+public class Character implements Parcelable {
 
-    @SerializedName(Constants.ID_KEY)
+    //@SerializedName(Constants.ID_KEY)
     int id;
 
-    @SerializedName(Constants.NAME_KEY)
+    //@SerializedName(Constants.NAME_KEY)
     String name;
 
-    @SerializedName(Constants.DESCRIPTION_KEY)
+    //@SerializedName(Constants.DESCRIPTION_KEY)
     String description;
 
     @Expose
@@ -34,6 +36,30 @@ public class Character {
 
     @Expose
     int availableStories;
+
+    public Character() {}
+
+    protected Character(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        description = in.readString();
+        urlImage = in.readParcelable(Uri.class.getClassLoader());
+        availableComics = in.readInt();
+        availableSeries = in.readInt();
+        availableStories = in.readInt();
+    }
+
+    public static final Creator<Character> CREATOR = new Creator<Character>() {
+        @Override
+        public Character createFromParcel(Parcel in) {
+            return new Character(in);
+        }
+
+        @Override
+        public Character[] newArray(int size) {
+            return new Character[size];
+        }
+    };
 
     // Построю {com.example.dmitry.marvelheroes.item.Character} из JsonObject
     public static Character buildFromJson(JsonObject characterData) {
@@ -132,5 +158,21 @@ public class Character {
                 "\n available series:" + availableSeries +
                 "\n available stories:" + availableStories;
         return hero;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcelOut, int flags) {
+        parcelOut.writeInt(id);
+        parcelOut.writeString(name);
+        parcelOut.writeString(description);
+        parcelOut.writeParcelable(urlImage, flags);
+        parcelOut.writeInt(availableComics);
+        parcelOut.writeInt(availableSeries);
+        parcelOut.writeInt(availableStories);
     }
 }

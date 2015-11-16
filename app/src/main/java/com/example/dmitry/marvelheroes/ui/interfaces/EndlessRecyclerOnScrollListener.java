@@ -15,7 +15,7 @@ public abstract class EndlessRecyclerOnScrollListener extends RecyclerView.OnScr
 
     private int previousTotal = 0; // Общее число загруженных предметов в "наборе"
     private boolean loading = true; // Правда - если ждем последние загружаемые данные
-    private int visibleThreshols = 12; // Минимальное количество ячеек/предметов ниже текщей позиции в скроллере перед тем, как загружать еще
+    private int visibleThreshols = 12; // Минимальное количество ячеек/предметов ниже текущей позиции в скроллере перед тем, как загружать еще
     int firstVisibleItem, visibleItemCount, totalItemCount;
 
     private int currentPage = 1;

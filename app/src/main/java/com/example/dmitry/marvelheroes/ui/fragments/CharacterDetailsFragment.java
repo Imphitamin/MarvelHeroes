@@ -1,10 +1,9 @@
 package com.example.dmitry.marvelheroes.ui.fragments;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.dmitry.marvelheroes.R;
-import com.example.dmitry.marvelheroes.rest.Constants;
+import com.example.dmitry.marvelheroes.item.Character;
 import com.example.dmitry.marvelheroes.rest.MarvelApiClient;
 import com.example.dmitry.marvelheroes.rest.responseModels.CharacterDetailsResponse;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -23,13 +22,14 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
+
 /**
  * Created by Dmitry on 13.10.2015.
  */
 public class CharacterDetailsFragment extends Fragment {
 
     public Context CONTEXT;
-    private SharedPreferences superPrefs;
+    private Character characterData;
 
     @InjectView(R.id.img_character_details)
     SimpleDraweeView heroImage;
@@ -41,17 +41,22 @@ public class CharacterDetailsFragment extends Fragment {
 
     public CharacterDetailsFragment() {}
 
+    public static CharacterDetailsFragment newInstance(Parcelable parcelable){
+        CharacterDetailsFragment mCharacterDetailFragment = new CharacterDetailsFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("characterData", parcelable);
+        mCharacterDetailFragment.setArguments(bundle);
+
+        return mCharacterDetailFragment;
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         CONTEXT = context;
+        characterData = getArguments().getParcelable("characterData");
     }
-
-    /*public static CharacterDetailsFragment getInstance(Bundle bundle) {
-        CharacterDetailsFragment mCharacterDetailsFragment = new CharacterDetailsFragment();
-        mCharacterDetailsFragment.setArguments(bundle);
-        return mCharacterDetailsFragment;
-    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,12 +67,10 @@ public class CharacterDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_character_details, container, false);
-        superPrefs = PreferenceManager.getDefaultSharedPreferences(this.CONTEXT);
 
         ButterKnife.inject(this, rootView);
         initView();
-        //MarvelApiClient.getInstance(CONTEXT).requestHeroDetails(this.getArguments().getString(Constants.ID_KEY),
-        MarvelApiClient.getInstance(CONTEXT).requestHeroDetails(superPrefs.getString("id", "no id"),
+        MarvelApiClient.getInstance(CONTEXT).requestHeroDetails(String.valueOf(characterData.getId()),
                 new Callback<CharacterDetailsResponse>() {
             @Override
             public void success(CharacterDetailsResponse characterDetailsResponse, Response response) {
@@ -81,12 +84,12 @@ public class CharacterDetailsFragment extends Fragment {
     }
 
     private void initView() {
-        //heroImage.setImageURI(Uri.parse(this.getArguments().getString(Constants.HERO_URL_IMAGE)));
-        //heroName.setText(this.getArguments().getString(Constants.HERO_NAME));
-        //heroDesc.setText(this.getArguments().getString(Constants.HERO_DESC));
-
-        heroImage.setImageURI(Uri.parse(superPrefs.getString("heroImage", "no image")));
-        heroName.setText(superPrefs.getString("heroName", "no name"));
-        heroDesc.setText(superPrefs.getString("heroDesc", "no description"));
+        heroImage.setImageURI(Uri.parse(String.valueOf(characterData.getUrlImage())));
+        heroName.setText(characterData.getName());
+        if (!characterData.getDescription().equals("")) {
+            heroDesc.setText(characterData.getDescription());
+        } else {
+            heroDesc.setText(R.string.NO_description);
+        }
     }
 }

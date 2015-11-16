@@ -3,6 +3,7 @@ package com.example.dmitry.marvelheroes.ui.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dmitry.marvelheroes.R;
+import com.example.dmitry.marvelheroes.item.*;
+import com.example.dmitry.marvelheroes.item.Character;
 import com.example.dmitry.marvelheroes.ui.adapters.ComicsListAdapter;
 import com.example.dmitry.marvelheroes.ui.interfaces.OnComicsRecycleViewScrollListener;
 
@@ -24,20 +27,30 @@ public class CharacterDetailsComicsFragment extends Fragment {
     private RecyclerView recyclerViewComics;
     private ComicsListAdapter comicsListAdapter;
     private Context CONTEXT;
-    SharedPreferences superPrefs;
+    private Character characterData;
 
     public CharacterDetailsComicsFragment() {}
+
+    public static CharacterDetailsComicsFragment newInstance(Parcelable parcelable){
+        CharacterDetailsComicsFragment mCharacterDetailsComicsFragment = new CharacterDetailsComicsFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("characterData", parcelable);
+        mCharacterDetailsComicsFragment.setArguments(bundle);
+
+        return mCharacterDetailsComicsFragment;
+    }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         CONTEXT = context;
+        characterData = getArguments().getParcelable("characterData");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         recyclerViewComics = (RecyclerView) inflater.inflate(R.layout.fragment_character_comics, container, false);
-        superPrefs = PreferenceManager.getDefaultSharedPreferences(this.CONTEXT);
         return recyclerViewComics;
     }
 
@@ -60,7 +73,7 @@ public class CharacterDetailsComicsFragment extends Fragment {
         recyclerViewComics.setOnScrollListener(new OnComicsRecycleViewScrollListener(glm) {
             @Override
             public void onLoadMore() {
-                comicsListAdapter.requestForComicsByCharacterId(superPrefs.getString("id", "no id"));
+                comicsListAdapter.requestForComicsByCharacterId(String.valueOf(characterData.getId()));
             }
         });
     }
@@ -68,6 +81,6 @@ public class CharacterDetailsComicsFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        comicsListAdapter.requestForComicsByCharacterId(superPrefs.getString("id", "no id"));
+        comicsListAdapter.requestForComicsByCharacterId(String.valueOf(characterData.getId()));
     }
 }
