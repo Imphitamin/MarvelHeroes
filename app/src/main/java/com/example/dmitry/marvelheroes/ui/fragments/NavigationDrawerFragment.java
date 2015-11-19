@@ -1,12 +1,11 @@
 package com.example.dmitry.marvelheroes.ui.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.support.annotation.IntRange;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,7 +13,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,17 +24,10 @@ import com.example.dmitry.marvelheroes.R;
 import com.example.dmitry.marvelheroes.item.Counter;
 import com.example.dmitry.marvelheroes.item.NavDrawItem;
 import com.example.dmitry.marvelheroes.rest.Constants;
-import com.example.dmitry.marvelheroes.rest.MarvelApiClient;
-import com.example.dmitry.marvelheroes.rest.responseModels.CharacterListResponse;
-import com.example.dmitry.marvelheroes.ui.adapters.ComicsListAdapter;
 import com.example.dmitry.marvelheroes.ui.adapters.NavigationDrawerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 /**
  * Created by Dmitry on 13.10.2015.
@@ -44,7 +35,6 @@ import retrofit.client.Response;
 
 public class NavigationDrawerFragment extends Fragment {
 
-    private static final String TAG = "NavigationDrawerFrag";
     public Context CONTEXT;
 
     private List<NavDrawItem> NavDrawItems = new ArrayList<>();
@@ -52,14 +42,14 @@ public class NavigationDrawerFragment extends Fragment {
     private ActionBarDrawerToggle mDrawerToggle;
 
     private DrawerLayout mDrawerLayout;
-    private ListView mDrawerListView;
+    public ListView mDrawerListView;
     private View mFragmentContainerView;
 
     private int mCurrentSelectedPosition = 0;
     private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
 
     Counter counter;
+    NavigationDrawerAdapter navigationDrawerAdapter;
 
 
     public NavigationDrawerFragment() {}
@@ -73,8 +63,6 @@ public class NavigationDrawerFragment extends Fragment {
         super.onAttach(context);
         CONTEXT = context;
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        editor = preferences.edit();
-        editor.commit();
         counter = new Counter(CONTEXT);
 
         try {
@@ -102,45 +90,38 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        int chTotal = preferences.getInt(Constants.CHARACTERS_IN_TOTAL, 0);
+        int cmTotal = preferences.getInt(Constants.COMICS_IN_TOTAL, 0);
+        navigationDrawerAdapter = new NavigationDrawerAdapter(getActivity(), loadArrayOptions(chTotal, cmTotal));
 
-        mDrawerListView.setAdapter(new NavigationDrawerAdapter(getActivity(), loadArrayOptions()));
+        mDrawerListView.setAdapter(navigationDrawerAdapter);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectItem(position);
-                /*mDrawerListView.setAdapter(new NavigationDrawerAdapter(getActivity(), loadArrayOptionsWithNotificator(position)));
-                mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        selectItem(position);
-                    }
-                });
-                mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);*/
             }
         });
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
     }
     
-    public List<NavDrawItem> loadArrayOptions() {
+    public List<NavDrawItem> loadArrayOptions(int charactersTotal, int comicsTotal) {
         counter.requestCharactersCount();
         counter.requestComicsCount();
-        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_character, R.string.title_selection1, Constants.CHARACTERS, 0));
-        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_comics, R.string.title_selection2, Constants.COMICS, preferences.getInt(Constants.COMICS_IN_TOTAL, 0)));
+        NavDrawItems.clear();
+        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_character, R.string.title_selection1, Constants.CHARACTERS, charactersTotal));
+        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_comics, R.string.title_selection2, Constants.COMICS, comicsTotal));
         return NavDrawItems;
     }
 
-    /*public List <NavDrawItem> loadArrayOptionsWithNotificator(int position) {
-        if (position == Constants.CHARACTERS) {
-            counter.requestCharactersCount();
-            NavDrawItems.set(position, new NavDrawItem(R.mipmap.ic_character, R.string.title_selection1, Constants.CHARACTERS, preferences.getInt("totalCharacters", 0)));
-            //NavDrawItems.get(Constants.CHARACTERS).setIdTotal(counter.getCharactersCount());
-        } else {
-            counter.requestComicsCount();
-            NavDrawItems.set(position, new NavDrawItem(R.mipmap.ic_comics, R.string.title_selection2, Constants.COMICS, preferences.getInt("totalComics", 0)));
-            //NavDrawItems.get(Constants.COMICS).setIdTotal(counter.getComicsCounter());
+    public void updateMenuCounter(int key, @IntRange(from = 0) int value) {
+        for (int position = 0, size = NavDrawItems.size(); position < size; position++) {
+            NavDrawItem navDrawItem = NavDrawItems.get(position);
+            if (navDrawItem.getIdKey() == key) {
+                navDrawItem.setTotal(value);
+            }
         }
-        return NavDrawItems;
-    }*/
+        navigationDrawerAdapter.notifyDataSetChanged();
+    }
     
     public void selectItem(int position) {
         mCurrentSelectedPosition = position;
@@ -171,6 +152,8 @@ public class NavigationDrawerFragment extends Fragment {
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 getActivity().supportInvalidateOptionsMenu();
+
+
             }
         };
         

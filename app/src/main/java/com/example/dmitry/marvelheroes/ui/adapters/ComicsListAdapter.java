@@ -7,14 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dmitry.marvelheroes.R;
 import com.example.dmitry.marvelheroes.item.Comic;
 import com.example.dmitry.marvelheroes.rest.Constants;
 import com.example.dmitry.marvelheroes.rest.MarvelApiClient;
 import com.example.dmitry.marvelheroes.rest.responseModels.ComicsListResponse;
-import com.example.dmitry.marvelheroes.ui.fragments.ComicsFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;

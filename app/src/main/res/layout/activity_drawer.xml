@@ -6,22 +6,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/text" >
+        android:background="@color/text"
+        >
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
+            layout="@layout/toolbar"
+            />
 
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/inputLayout"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                >
+                <EditText
+                    android:id="@+id/editableText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:textColor="@color/primary_dark"
+                    android:gravity="center"
+                    android:hint="@string/hint_enterNumber"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/sendEditableText"
+                android:layout_width="@dimen/item_navigation_drawer_iconSize"
+                android:layout_height="@dimen/item_navigation_drawer_iconSize"
+                android:layout_toRightOf="@+id/inputLayout"
+                android:layout_toEndOf="@+id/inputLayout"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@android:drawable/ic_menu_send"
+                android:onClick="sendText"
+                android:contentDescription="@string/sendEditableText"
+                />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
     </LinearLayout>
 
     <fragment
@@ -30,6 +73,7 @@
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:layout="@layout/fragment_navigation_drawer" />
+        tools:layout="@layout/fragment_navigation_drawer"
+        />
 
 </android.support.v4.widget.DrawerLayout>

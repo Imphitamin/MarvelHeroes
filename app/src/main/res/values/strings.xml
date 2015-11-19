@@ -10,5 +10,7 @@
     <string name="navigation_drawer_open">Open Navigation drawer</string>
     <string name="navigation_drawer_close">Close Navigation drawer</string>
     <string name="notificator_content_desc">Notification circle</string>
+    <string name="sendEditableText">Send editable text</string>
+    <string name="hint_enterNumber">Введите число</string>
 
 </resources>

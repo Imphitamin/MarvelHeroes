@@ -14,7 +14,6 @@ public class Constants {
     public static final String API_KEY_PARAM = "apikey";
     public static final String LIMIT_PARAM = "limit";
     public static final String OFFSET_PARAM = "offset";
-    public static final String TOTAL_PARAM = "total";
     public static final String TS_PARAM = "ts";
     public static final String HASH_PARAM = "hash";
     public static final int TIMER_NUMBER = 1250;
@@ -22,7 +21,6 @@ public class Constants {
     public static final int CHARACTERS_LIMIT = 25;
     public static final int CHARACTERS_INIT_COUNT = 0;
     public static final int COMICS_INIT_COUNT = 0;
-    public static final int TOTAL_INIT_COUNT = 0;
     public static final int CHARACTERS = 111;
     public static final int COMICS = 222;
 
