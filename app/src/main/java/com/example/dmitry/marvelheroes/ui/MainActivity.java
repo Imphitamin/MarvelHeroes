@@ -1,5 +1,7 @@
 package com.example.dmitry.marvelheroes.ui;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -7,13 +9,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import com.example.dmitry.marvelheroes.R;
 import com.example.dmitry.marvelheroes.item.Counter;
 import com.example.dmitry.marvelheroes.rest.Constants;
+import com.example.dmitry.marvelheroes.ui.adapters.NavigationDrawerAdapter;
 import com.example.dmitry.marvelheroes.ui.fragments.CharactersFragment;
 import com.example.dmitry.marvelheroes.ui.fragments.ComicsFragment;
 import com.example.dmitry.marvelheroes.ui.fragments.NavigationDrawerFragment;
@@ -30,19 +38,21 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     private static Timer TIMER = new Timer();
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
     private int mCurrentSelectedPosition = -1;
 
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
+
+    @InjectView(R.id.editableText)
+    EditText editableText;
 
     @InjectView(R.id.drawer_layout)
     DrawerLayout newDrawerLayout;
 
     @InjectView(R.id.navigation_drawer)
     View mFragmentViewContainer;
-
-    Counter counter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         ButterKnife.inject(this);
         Fresco.initialize(this);
         setSupportActionBar(toolbar);
+        editableText.clearFocus();
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = preferences.edit();
+        editor.commit();
 
         mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mNavigationDrawerFragment.setUp(mFragmentViewContainer, newDrawerLayout, toolbar);
@@ -181,5 +196,25 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 .commit();
         item.setVisible(false);
         MainActivity.this.setTitle(getResources().getString(R.string.title_selection2));
+    }
+
+    public void sendText(View view) {
+        int charTotal = 0;
+        int comTotal = 0;
+        //int position = -1;
+        Editable editable = editableText.getText();
+
+
+        if (TextUtils.isEmpty(editable)) {
+            mNavigationDrawerFragment.updateMenuCounter(Constants.COMICS, 0);
+            mNavigationDrawerFragment.updateMenuCounter(Constants.CHARACTERS, 0);
+        } else {
+            charTotal = Integer.valueOf(String.valueOf(editable));
+            comTotal = charTotal + 2;
+
+            mNavigationDrawerFragment.updateMenuCounter(Constants.COMICS, comTotal);
+            mNavigationDrawerFragment.updateMenuCounter(Constants.CHARACTERS, charTotal);
+        }
+        editableText.clearFocus();
     }
 }

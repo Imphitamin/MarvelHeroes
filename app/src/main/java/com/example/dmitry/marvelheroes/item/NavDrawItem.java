@@ -9,21 +9,14 @@ public class NavDrawItem {
     private int idIcon;
     private int idText;
     private int idKey;
-    private int idTotal;
+    private int total;
 
-    /*public NavDrawItem(int idIcon, int idText, int idKey) {
+    public NavDrawItem(int idIcon, int idText, int idKey, int total) {
         this.idIcon = idIcon;
         this.idText = idText;
         this.idKey = idKey;
-    }*/
-
-    public NavDrawItem(int idIcon, int idText, int idKey, int idTotal) {
-        this.idIcon = idIcon;
-        this.idText = idText;
-        this.idKey = idKey;
-        this.idTotal = idTotal;
+        this.total = total;
     }
-
 
     public int getIdIcon() {
         return this.idIcon;
@@ -34,7 +27,11 @@ public class NavDrawItem {
     public int getIdKey() {
         return idKey;
     }
-    public int getIdTotal() {
-        return idTotal;
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 }
