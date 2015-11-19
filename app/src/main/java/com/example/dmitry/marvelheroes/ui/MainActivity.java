@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.dmitry.marvelheroes.R;
+import com.example.dmitry.marvelheroes.item.Counter;
 import com.example.dmitry.marvelheroes.rest.Constants;
 import com.example.dmitry.marvelheroes.ui.fragments.CharactersFragment;
 import com.example.dmitry.marvelheroes.ui.fragments.ComicsFragment;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
 
     @InjectView(R.id.navigation_drawer)
     View mFragmentViewContainer;
+
+    Counter counter;
 
 
     @Override

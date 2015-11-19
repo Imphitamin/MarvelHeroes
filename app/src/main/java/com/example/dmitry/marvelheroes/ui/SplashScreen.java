@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.dmitry.marvelheroes.R;
 import com.crashlytics.android.Crashlytics;
+import com.example.dmitry.marvelheroes.item.Counter;
+
 import io.fabric.sdk.android.Fabric;
 
 /**

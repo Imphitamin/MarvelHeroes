@@ -14,19 +14,27 @@ public class Constants {
     public static final String API_KEY_PARAM = "apikey";
     public static final String LIMIT_PARAM = "limit";
     public static final String OFFSET_PARAM = "offset";
+    public static final String TOTAL_PARAM = "total";
     public static final String TS_PARAM = "ts";
     public static final String HASH_PARAM = "hash";
     public static final int TIMER_NUMBER = 1250;
+
     public static final int CHARACTERS_LIMIT = 25;
     public static final int CHARACTERS_INIT_COUNT = 0;
+    public static final int COMICS_INIT_COUNT = 0;
+    public static final int TOTAL_INIT_COUNT = 0;
     public static final int CHARACTERS = 111;
     public static final int COMICS = 222;
+
+    public static final String CHARACTERS_IN_TOTAL = "totalCharacters";
+    public static final String COMICS_IN_TOTAL = "totalComics";
 
     // Константы для каждого из объектов, найденных в JSON ответе(response)
     public static final String CODE_KEY = "code";
     public static final String STATUS_KEY = "status";
     public static final String DATA_KEY = "data";
     public static final String OFFSET_KEY = "offset";
+    public static final String TOTAL_KEY = "total";
     public static final String RESULTS_KEY = "results";
     public static final String ID_KEY = "id";
     public static final String NAME_KEY = "name";

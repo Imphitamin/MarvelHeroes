@@ -21,6 +21,10 @@ public class CharacterListResponse {
     @SerializedName(Constants.STATUS_KEY)
     String status;
 
+    //@SerializedName(Constants.TOTAL_KEY)
+    @Expose
+    public int total;
+
     @Expose
     public int offset;
 
@@ -57,6 +61,13 @@ public class CharacterListResponse {
     }
     public int getOffset() {
         return offset;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+    public int getTotal() {
+        return total;
     }
 
 }

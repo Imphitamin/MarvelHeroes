@@ -14,6 +14,7 @@ import com.example.dmitry.marvelheroes.item.Comic;
 import com.example.dmitry.marvelheroes.rest.Constants;
 import com.example.dmitry.marvelheroes.rest.MarvelApiClient;
 import com.example.dmitry.marvelheroes.rest.responseModels.ComicsListResponse;
+import com.example.dmitry.marvelheroes.ui.fragments.ComicsFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;

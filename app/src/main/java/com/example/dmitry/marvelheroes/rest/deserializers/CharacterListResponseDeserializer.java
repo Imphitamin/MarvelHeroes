@@ -32,6 +32,7 @@ public class CharacterListResponseDeserializer implements JsonDeserializer<Chara
         JsonObject data = json.getAsJsonObject()
                 .getAsJsonObject(Constants.DATA_KEY);
         response.setOffset(data.get(Constants.OFFSET_KEY).getAsInt());
+        response.setTotal(data.get(Constants.TOTAL_KEY).getAsInt());
 
         JsonArray charactersArray = data.getAsJsonArray(Constants.RESULTS_KEY);
         response.setCharacters(extractCharactersFromJsom(charactersArray));

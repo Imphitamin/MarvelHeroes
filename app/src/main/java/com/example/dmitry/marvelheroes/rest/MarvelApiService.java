@@ -17,10 +17,10 @@ public interface MarvelApiService {
 
     @GET(Constants.HEROES_URL)
     void requestHeroesList(@Query(Constants.LIMIT_PARAM) int limit,
-                                  @Query(Constants.OFFSET_PARAM) int offset,
-                                  @Query(Constants.API_KEY_PARAM) String apiKey,
-                                  @Query(Constants.TS_PARAM) long ts,
-                                  @Query(Constants.HASH_PARAM) String hash,
+                           @Query(Constants.OFFSET_PARAM) int offset,
+                           @Query(Constants.API_KEY_PARAM) String apiKey,
+                           @Query(Constants.TS_PARAM) long ts,
+                           @Query(Constants.HASH_PARAM) String hash,
                            Callback<CharacterListResponse> callback);
 
     @GET(Constants.HERO_DETAIL_URL)

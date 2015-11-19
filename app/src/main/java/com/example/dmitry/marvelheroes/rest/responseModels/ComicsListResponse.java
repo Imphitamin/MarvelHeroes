@@ -21,6 +21,9 @@ public class ComicsListResponse {
     private String status;
 
     @Expose
+    private int total;
+
+    @Expose
     private int offset;
 
     @Expose
@@ -52,5 +55,12 @@ public class ComicsListResponse {
     }
     public int getOffset() {
         return offset;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+    public int getTotal() {
+        return total;
     }
 }

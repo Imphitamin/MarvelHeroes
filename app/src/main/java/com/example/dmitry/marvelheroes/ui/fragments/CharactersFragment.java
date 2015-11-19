@@ -1,20 +1,27 @@
 package com.example.dmitry.marvelheroes.ui.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dmitry.marvelheroes.R;
+import com.example.dmitry.marvelheroes.item.NavDrawItem;
 import com.example.dmitry.marvelheroes.rest.Constants;
 import com.example.dmitry.marvelheroes.rest.MarvelApiClient;
 import com.example.dmitry.marvelheroes.rest.responseModels.CharacterListResponse;
 import com.example.dmitry.marvelheroes.ui.adapters.CharactersListAdapter;
+import com.example.dmitry.marvelheroes.ui.adapters.NavigationDrawerAdapter;
 import com.example.dmitry.marvelheroes.ui.interfaces.EndlessRecyclerOnScrollListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -27,6 +34,7 @@ import retrofit.client.Response;
  */
 
 public class CharactersFragment extends Fragment {
+    private static final String TAG = "CharactersFragment";
 
     public Context CONTEXT;
 
@@ -68,7 +76,7 @@ public class CharactersFragment extends Fragment {
 
                     @Override
                     public void failure(RetrofitError error) {
-                        error.printStackTrace();
+                        Log.e(TAG, "Failed to get response: ", error);
                     }
                 });
     }

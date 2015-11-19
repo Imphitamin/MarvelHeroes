@@ -17,7 +17,7 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     int mNumberOfTabs;
     Parcelable mCharacterData;
 
-    public TabPagerAdapter(FragmentManager fragmentManager, int numberOfTabs, Parcelable characterData) { // TODO: добавить третий параметр
+    public TabPagerAdapter(FragmentManager fragmentManager, int numberOfTabs, Parcelable characterData) {
         super(fragmentManager);
         this.mNumberOfTabs = numberOfTabs;
         this.mCharacterData = characterData;

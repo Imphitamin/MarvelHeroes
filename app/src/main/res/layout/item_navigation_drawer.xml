@@ -3,31 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@drawable/nav_item_draw" >
+    android:background="@drawable/nav_item_draw"
+    >
 
     <ImageView
         android:id="@+id/imageViewIconContent"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="@dimen/item_navigation_drawer_iconSize"
+        android:layout_height="@dimen/item_navigation_drawer_iconSize"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp"
+        android:layout_marginLeft="@dimen/item_navigation_drawer_icon_margin"
+        android:layout_marginStart="@dimen/item_navigation_drawer_icon_margin"
         android:contentDescription="@string/app_name"
-        tools:ignore="RtlHardcoded" />
+        tools:ignore="RtlHardcoded"
+        />
 
     <TextView
         android:id="@+id/textViewTitleContent"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:paddingLeft="70dp"
-        android:paddingStart="70dp"
-        android:textSize="15sp"
+        android:paddingLeft="@dimen/item_navigation_drawer_fieldName_padding"
+        android:paddingStart="@dimen/item_navigation_drawer_fieldName_padding"
+        android:textSize="@dimen/item_navigation_drawer_textSize_normal"
         android:textColor="@color/text"
-        tools:ignore="RtlHardcoded,RtlSymmetry" />
+        tools:ignore="RtlHardcoded,RtlSymmetry"
+        />
+
+    <RelativeLayout
+        android:layout_width="@dimen/item_navigation_drawer_notificator"
+        android:layout_height="@dimen/item_navigation_drawer_notificator"
+        android:layout_marginEnd="@dimen/item_navigation_drawer_notificator_margin"
+        android:layout_marginRight="@dimen/item_navigation_drawer_notificator_margin"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        >
+    
+        <ImageView
+            android:id="@+id/notification_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/drawable_notifier_image"
+            android:contentDescription="@string/notificator_content_desc" />
+
+        <TextView
+            android:id="@+id/notification_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:textSize="@dimen/item_navigation_drawer_textSize_small"
+            android:textColor="@color/primary_dark"
+        />
+    </RelativeLayout>
 
 </RelativeLayout>

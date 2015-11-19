@@ -31,6 +31,7 @@ public class ComicsListResponseDeserializer implements JsonDeserializer<ComicsLi
         // Затем десериализуем все необходимые вложенные(nested) атрибуты
         JsonObject data = json.getAsJsonObject().getAsJsonObject(Constants.DATA_KEY);
         response.setOffset(data.get(Constants.OFFSET_KEY).getAsInt());
+        response.setTotal(data.get(Constants.TOTAL_KEY).getAsInt());
 
         JsonArray charactersArray = data.getAsJsonArray(Constants.RESULTS_KEY);
         response.setComics(extractComicsFromJson(charactersArray));
