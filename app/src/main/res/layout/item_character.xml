@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_Main"
     android:layout_width="match_parent"
@@ -46,9 +47,9 @@
         android:paddingEnd="10dp"
         android:layout_below="@+id/img_block"
         android:gravity="center"
-        android:text="SPIDER-MAN"
+        tools:text="SPIDER-MAN"
         android:fontFamily="Verdana"
-        android:textSize="27sp"
+        android:textSize="@dimen/textSize_very_normal"
         android:textColor="@color/black_screen"
         android:textStyle="bold|italic"
         android:maxLines="2"/>

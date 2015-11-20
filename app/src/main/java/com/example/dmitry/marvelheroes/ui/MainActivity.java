@@ -1,5 +1,6 @@
 package com.example.dmitry.marvelheroes.ui;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -91,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
     }
 
     public void setNewTitle(int number) {
-        String CharactersTitle = getString(R.string.title_selection1);
-        String ComicsTitle = getString(R.string.title_selection2);
+        String CharactersTitle = getString(R.string.title_characters);
+        String ComicsTitle = getString(R.string.title_comics);
 
         switch (number) {
             case Constants.CHARACTERS:
@@ -173,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                     }, Constants.TIMER_NUMBER);
                 } else {
                     cancelSearchItem.setVisible(false);
-                    MainActivity.this.setTitle(R.string.title_selection2);
+                    MainActivity.this.setTitle(R.string.title_comics);
                     ComicsFragment comicsFragment = new ComicsFragment();
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.main_container, comicsFragment)
@@ -191,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
                 .replace(R.id.main_container, comicsFragment)
                 .commit();
         item.setVisible(false);
-        MainActivity.this.setTitle(getResources().getString(R.string.title_selection2));
+        MainActivity.this.setTitle(getResources().getString(R.string.title_comics));
     }
 
     public void sendText(View view) {
@@ -210,5 +211,10 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
             mNavigationDrawerFragment.updateMenuCounter(Constants.CHARACTERS, charTotal);
         }
         editableText.clearFocus();
+    }
+
+    public void onClickAboutApp(MenuItem item) {
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
     }
 }

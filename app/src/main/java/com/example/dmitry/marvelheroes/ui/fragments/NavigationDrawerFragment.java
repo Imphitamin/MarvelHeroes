@@ -108,8 +108,8 @@ public class NavigationDrawerFragment extends Fragment {
         counter.requestCharactersCount();
         counter.requestComicsCount();
         NavDrawItems.clear();
-        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_character, R.string.title_selection1, Constants.CHARACTERS, charactersTotal));
-        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_comics, R.string.title_selection2, Constants.COMICS, comicsTotal));
+        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_character, R.string.title_characters, Constants.CHARACTERS, charactersTotal));
+        NavDrawItems.add(new NavDrawItem(R.mipmap.ic_comics, R.string.title_comics, Constants.COMICS, comicsTotal));
         return NavDrawItems;
     }
 

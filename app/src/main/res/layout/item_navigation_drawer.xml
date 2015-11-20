@@ -16,6 +16,7 @@
         android:layout_marginLeft="@dimen/item_navigation_drawer_icon_margin"
         android:layout_marginStart="@dimen/item_navigation_drawer_icon_margin"
         android:contentDescription="@string/app_name"
+        tools:src="@mipmap/ic_character"
         tools:ignore="RtlHardcoded"
         />
 
@@ -28,6 +29,7 @@
         android:layout_centerVertical="true"
         android:paddingLeft="@dimen/item_navigation_drawer_fieldName_padding"
         android:paddingStart="@dimen/item_navigation_drawer_fieldName_padding"
+        tools:text="Heroes"
         android:textSize="@dimen/item_navigation_drawer_textSize_normal"
         android:textColor="@color/text"
         tools:ignore="RtlHardcoded,RtlSymmetry"
@@ -49,7 +51,8 @@
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:src="@mipmap/drawable_notifier_image"
-            android:contentDescription="@string/notificator_content_desc" />
+            android:contentDescription="@string/notificator_content_desc"
+            />
 
         <TextView
             android:id="@+id/notification_count"
@@ -57,9 +60,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:singleLine="true"
+            tools:text="99"
             android:textSize="@dimen/item_navigation_drawer_textSize_small"
             android:textColor="@color/primary_dark"
         />
+
     </RelativeLayout>
 
 </RelativeLayout>

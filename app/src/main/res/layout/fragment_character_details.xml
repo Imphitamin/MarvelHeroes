@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        >
 
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -17,7 +20,8 @@
             android:layout_gravity="center|top"
             android:layout_margin="10dp"
             card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="16dp" >
+            card_view:cardElevation="16dp"
+            >
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/img_character_details"
@@ -27,7 +31,8 @@
                 android:maxHeight="400dp"
                 android:layout_gravity="center"
                 fresco:actualImageScaleType="centerCrop"
-                fresco:placeholderImage="@drawable/test_hero" />
+                fresco:placeholderImage="@drawable/test_hero"
+                />
 
         </android.support.v7.widget.CardView>
 
@@ -43,7 +48,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="16dp" >
+            card_view:cardElevation="16dp"
+            >
 
             <TextView
                 android:id="@+id/nameTitle"
@@ -52,9 +58,10 @@
                 android:layout_marginLeft="11dp"
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="10dp"
-                android:text="Name"
+                android:text="@string/character_details_name"
                 android:textSize="23sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/heroName"
@@ -70,7 +77,8 @@
                 android:paddingRight="4dp"
                 android:paddingEnd="4dp"
                 android:textSize="19sp"
-                android:text="Oculus" />
+                tools:text="Oculus"
+                />
 
         </android.support.v7.widget.CardView>
 
@@ -87,7 +95,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="16dp" >
+            card_view:cardElevation="16dp"
+            >
 
             <TextView
                 android:id="@+id/descTitle"
@@ -96,9 +105,10 @@
                 android:layout_marginLeft="11dp"
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="10dp"
-                android:text="Description"
+                android:text="@string/character_details_description"
                 android:textSize="23sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/heroDesc"
@@ -108,19 +118,24 @@
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="10dp"
-                android:text="Example of DESCRIPTION here!"
-                android:textSize="18sp"/>
+                tools:text="Example of description here!"
+                android:textSize="18sp"
+                />
 
         </android.support.v7.widget.CardView>
 
         <Button
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Force Crash!"
-            android:onClick="forceCrash"
             android:layout_gravity="end"
             android:layout_marginEnd="7dp"
-            android:layout_marginRight="7dp"/>
+            android:layout_marginRight="7dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/button_forcecrash_color"
+            android:text="@string/force_crash_text"
+            android:onClick="forceCrash"
+            />
 
     </LinearLayout>
 

@@ -4,13 +4,29 @@
     <string name="NO_description">No description</string>
 
     <string name="title_activity_character_detail_activity">Character\'s Details</string>
-    <string name="title_selection1">Characters</string>
-    <string name="title_selection2">Comics</string>
+    <string name="title_characters">Characters</string>
+    <string name="title_comics">Comics</string>
+    <string name="character_details_name">Name</string>
+    <string name="character_details_description">Description</string>
 
     <string name="navigation_drawer_open">Open Navigation drawer</string>
     <string name="navigation_drawer_close">Close Navigation drawer</string>
     <string name="notificator_content_desc">Notification circle</string>
     <string name="sendEditableText">Send editable text</string>
+
     <string name="hint_enterNumber">Введите число</string>
+    <string name="snackbar_text">Поздравляю, ты нажал на эту кнопку!</string>
+    <string name="snackbar_toast_text_shown">Снэкбар открыт"</string>
+    <string name="snackbar_toast_text_manual">Закрыто нажатием на \"ЗАКРЫТЬ\"</string>
+    <string name="snackbar_toast_text_swipe">Закрыто перемещением в сторону</string>
+    <string name="snackbar_toast_text_timeout">Закрыто таймаутом"</string>
+    <string name="snackbar_action_text">ЗАКРЫТЬ</string>
+
+    <string name="app_about">About</string>
+    <string name="comics_search">Search comics</string>
+    <string name="search_cancel">Cancel search</string>
+    <string name="example_text">Example text</string>
+    <string name="force_crash_text">Force Crash!</string>
+    <string name="activity_about_name">CoordinatorVIew</string>
 
 </resources>

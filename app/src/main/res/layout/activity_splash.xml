@@ -10,10 +10,10 @@
         android:id="@+id/logo_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginLeft="@dimen/item_navigation_drawer_fieldName_padding"
+        android:layout_marginStart="@dimen/item_navigation_drawer_fieldName_padding"
+        android:layout_marginRight="@dimen/item_navigation_drawer_fieldName_padding"
+        android:layout_marginEnd="@dimen/item_navigation_drawer_fieldName_padding"
         android:layout_centerInParent="true">
     <ImageView
         android:id="@+id/marvel_Logo"
