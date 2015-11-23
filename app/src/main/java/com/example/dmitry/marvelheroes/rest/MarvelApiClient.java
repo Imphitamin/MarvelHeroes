@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
+import retrofit.android.AndroidLog;
 import retrofit.converter.GsonConverter;
 
 /**
@@ -47,6 +48,7 @@ public class MarvelApiClient {
         // Адаптер Retrofit - для того, чтобы совершать запросы
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLog(new AndroidLog("MARVEL_TAG"))
                 .setEndpoint(Constants.MAIN_URL)
                 .setConverter(new GsonConverter(gsonConfig))
                 .build();
